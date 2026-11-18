@@ -1,6 +1,6 @@
 # ¿Qué canales traen clientes que sí compran? · Análisis de GA4 en BigQuery
 
-> 🚧 **Proyecto en curso — semana 1 de 3.** Los hallazgos se completan a medida que avanza el análisis.
+> 📄 **[Leer el informe completo →](informe.md)** · Avance 1 de 3 publicado (exploración). Semanas 2 y 3 en curso.
 
 ## La pregunta de negocio
 Una tienda en línea invierte tiempo y dinero en varios canales (búsqueda orgánica, anuncios, referencias, correo…). La pregunta es simple:
@@ -30,6 +30,9 @@ sql/
   02_canales.sql            ← usuarios, sesiones, compras e ingresos por canal
   03_dispositivos.sql       ← lo mismo, por tipo de dispositivo
 resultados/                 ← resultados de cada consulta en CSV
+informe.md                  ← el estudio: hallazgos, gráficos y limitaciones
+graficos/                   ← gráficos del informe (SVG)
+scripts/graficos.mjs        ← genera los gráficos desde los CSV (node scripts/graficos.mjs)
 notas/
   semana-1.md               ← guía de trabajo y preguntas de la semana
 dashboard/                  ← (semana 3) dashboard y capturas
@@ -38,12 +41,20 @@ dashboard/                  ← (semana 3) dashboard y capturas
 ## Plan
 | Semana | Entregable |
 |---|---|
-| 1 | Exploración: eventos, canales y dispositivos |
-| 2 | Embudo de compra (vista → carrito → pago → compra) y cohortes de retención |
+| 1 ✅ | Exploración: eventos y canales → [informe, avance 1](informe.md) |
+| 2 | Dispositivos, embudo de compra (vista → carrito → pago → compra) y cohortes de retención |
 | 3 | Dashboard (resumen, embudo, canales), informe de una página y conclusiones |
 
-## Hallazgos
-*Se completan al terminar cada semana.*
+## Hallazgos principales (avance 1)
+![Embudo de compra](graficos/embudo.svg)
+
+- **Solo el 1,6 % de los visitantes compra**, y la mayor fuga está **antes del carrito**: el 77 % no abre ningún producto.
+- **En el pago, el 41 % abandona** entre los datos de envío y los de pago.
+- **Google orgánico** trae el 31 % de las visitas, pero convierte por debajo del promedio (1,29 % frente a 1,58 %).
+- **Los anuncios de Google** tienen la conversión (1,06 %) y el ticket (USD 54,6) más bajos.
+- **El 8 % de las sesiones son autorreferencias**: un error de medición que le quita el crédito a los canales reales.
+
+👉 Detalle, gráficos, tablas y limitaciones en el **[informe](informe.md)**.
 
 ## Herramientas
 SQL (BigQuery) · Google Analytics 4 · Power BI / Looker Studio

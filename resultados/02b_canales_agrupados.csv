@@ -1,0 +1,8 @@
+canal,sesiones,compras,ingresos_usd,pct_sesiones,pct_ingresos,conversion_pct,ticket_usd
+Google orgánico,112678,1454,95775,31.3,26.4,1.29,65.9
+Directo,83459,1251,79650,23.2,22.0,1.50,63.7
+Sin dato (anonimizado),74687,1445,85931,20.7,23.7,1.93,59.5
+Referidos de otros sitios,34675,557,37000,9.6,10.2,1.61,66.4
+Autorreferencia (la propia tienda),28849,701,46521,8.0,12.8,2.43,66.4
+Anuncios de Google (cpc),15618,166,9056,4.3,2.5,1.06,54.6
+Otros buscadores,10163,118,8232,2.8,2.3,1.16,69.8
