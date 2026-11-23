@@ -29,12 +29,15 @@ sql/
   01_panorama_eventos.sql   ← qué eventos existen y cuántos usuarios los generan
   02_canales.sql            ← usuarios, sesiones, compras e ingresos por canal
   03_dispositivos.sql       ← lo mismo, por tipo de dispositivo
+  04_embudo_secuencial.sql  ← embudo paso a paso por usuario (ver → carrito → pago → compra)
+  05_cohortes_retencion.sql ← de los usuarios nuevos de cada semana, cuántos vuelven en 30 días
 resultados/                 ← resultados de cada consulta en CSV
 informe.md                  ← el estudio: hallazgos, gráficos y limitaciones
 graficos/                   ← gráficos del informe (SVG)
 scripts/graficos.mjs        ← genera los gráficos desde los CSV (node scripts/graficos.mjs)
 notas/
   semana-1.md               ← guía de trabajo y preguntas de la semana
+  semana-2.md               ← guía de la semana 2 (dispositivos, embudo, retención)
 dashboard/                  ← (semana 3) dashboard y capturas
 ```
 
