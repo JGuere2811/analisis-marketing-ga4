@@ -108,4 +108,65 @@ fs.writeFileSync('resultados/02b_canales_agrupados.csv', 'canal,sesiones,compras
   fs.writeFileSync('graficos/canales-conversion.svg', svg(820, yFin + 44, 'Conversión por canal: los anuncios pagados convierten menos',
     '% de sesiones que terminan en compra · la línea punteada es el promedio de la tienda', cuerpo));
 }
+// ── 4. Dispositivos: participación y conversión ──────────────────────
+{
+  const disp = leerCsv('resultados/03_dispositivos.csv');
+  const nombre = { desktop: 'Computadora', mobile: 'Celular', tablet: 'Tablet' };
+  const x0 = 170, anchoMax = 250, h = 26, sep = 22, y0 = 118, xConv = 520, anchoConv = 200, maxConv = 2;
+  let cuerpo = `<text x="${x0}" y="${y0 - 16}" font-size="12" fill="${C.texto2}">% de las sesiones</text>
+<text x="${xConv}" y="${y0 - 16}" font-size="12" fill="${C.texto2}">conversión (compras / sesiones)</text>`;
+  disp.forEach((d, i) => {
+    const y = y0 + i * (h + sep), wp = d.participacion_sesiones_pct / 60 * anchoMax, wc = d.conversion_pct / maxConv * anchoConv;
+    const mejor = d.dispositivo === 'mobile';
+    cuerpo += `<text x="${x0 - 14}" y="${y + h / 2 + 5}" font-size="14" text-anchor="end" fill="${C.texto}" ${mejor ? 'font-weight="600"' : ''}>${nombre[d.dispositivo]}</text>`;
+    cuerpo += barra(x0, y, wp, h, C.s1) + `<text x="${x0 + wp + 8}" y="${y + h / 2 + 5}" font-size="13" fill="${C.texto}">${pct(d.participacion_sesiones_pct)}</text>`;
+    cuerpo += barra(xConv, y, wc, h, mejor ? C.s2 : C.tenue) + `<text x="${xConv + wc + 8}" y="${y + h / 2 + 5}" font-size="13" font-weight="600" fill="${C.texto}">${pct(d.conversion_pct, 2)}</text>`;
+  });
+  const yFin = y0 + disp.length * (h + sep) - sep;
+  cuerpo += `<line x1="${x0}" y1="${y0 - 6}" x2="${x0}" y2="${yFin + 6}" stroke="${C.tenue}"/><line x1="${xConv}" y1="${y0 - 6}" x2="${xConv}" y2="${yFin + 6}" stroke="${C.tenue}"/>`;
+  fs.writeFileSync('graficos/dispositivos.svg', svg(820, yFin + 34, 'El celular trae 4 de cada 10 visitas y convierte igual o mejor que la computadora',
+    'Sesiones y conversión por tipo de dispositivo · nov 2020 – ene 2021', cuerpo));
+}
+
+// ── 5. Embudo secuencial ─────────────────────────────────────────────
+{
+  const emb = leerCsv('resultados/04_embudo_secuencial.csv');
+  const base = emb[0].usuarios, x0 = 200, anchoMax = 420, h = 30, sep = 16, y0 = 96;
+  let cuerpo = `<text x="${x0 + anchoMax + 170}" y="${y0 - 12}" font-size="11" text-anchor="end" fill="${C.tenue}">del paso anterior</text>`;
+  emb.forEach((p, i) => {
+    const y = y0 + i * (h + sep), w = (p.usuarios / base) * anchoMax, fuga = i === 1;
+    cuerpo += `<text x="${x0 - 14}" y="${y + h / 2 + 5}" font-size="14" text-anchor="end" fill="${C.texto}">${esc(p.paso.replace(/^\d\. /, ''))}</text>`;
+    cuerpo += barra(x0, y, Math.max(w, 2), h, C.s1);
+    cuerpo += `<text x="${x0 + Math.max(w, 2) + 10}" y="${y + h / 2 + 5}" font-size="13" fill="${C.texto}"><tspan font-weight="600">${num(p.usuarios)}</tspan><tspan fill="${C.texto2}"> · ${pct(p.pct_desde_inicio)}</tspan></text>`;
+    if (i) cuerpo += `<text x="${x0 + anchoMax + 170}" y="${y + h / 2 + 5}" font-size="12" text-anchor="end" fill="${fuga ? C.s2 : C.texto2}" ${fuga ? 'font-weight="600"' : ''}>pasa ${pct(p.pct_desde_paso_anterior, 0)}</text>`;
+  });
+  cuerpo += `<line x1="${x0}" y1="${y0 - 6}" x2="${x0}" y2="${y0 + emb.length * (h + sep) - sep + 6}" stroke="${C.tenue}"/>`;
+  fs.writeFileSync('graficos/embudo-secuencial.svg', svg(820, y0 + emb.length * (h + sep) + 20, 'Embudo paso a paso: 8 de cada 10 que miran un producto no lo añaden al carrito',
+    'Usuarios que hicieron cada paso después del anterior · % sobre quienes vieron un producto', cuerpo));
+}
+
+// ── 6. Retención por cohorte semanal ─────────────────────────────────
+{
+  const coh = leerCsv('resultados/05_cohortes.csv');
+  const x0 = 70, y0 = 100, alto = 220, anchoCol = 52, sep = 14, max = 16;
+  let cuerpo = '';
+  [0, 5, 10, 15].forEach(v => {
+    const y = y0 + alto - v / max * alto;
+    cuerpo += `<line x1="${x0}" y1="${y}" x2="${x0 + coh.length * (anchoCol + sep)}" y2="${y}" stroke="${C.linea}"/><text x="${x0 - 8}" y="${y + 4}" font-size="11" text-anchor="end" fill="${C.tenue}">${v} %</text>`;
+  });
+  coh.forEach((c, i) => {
+    const x = x0 + i * (anchoCol + sep) + sep / 2, hb = c.volvio_en_30_dias_pct / max * alto, y = y0 + alto - hb;
+    const parcial = i === 0, dic = c.cohorte >= '2020-12-07';
+    const color = parcial ? C.linea : dic ? C.s2 : C.s1;
+    cuerpo += `<path d="M${x} ${y0 + alto}V${y + 4}Q${x} ${y} ${x + 4} ${y}H${x + anchoCol - 4}Q${x + anchoCol} ${y} ${x + anchoCol} ${y + 4}V${y0 + alto}Z" fill="${color}"/>`;
+    cuerpo += `<text x="${x + anchoCol / 2}" y="${y - 6}" font-size="12" font-weight="600" text-anchor="middle" fill="${C.texto}">${pct(c.volvio_en_30_dias_pct)}</text>`;
+    const [, m, d] = c.cohorte.split('-');
+    cuerpo += `<text x="${x + anchoCol / 2}" y="${y0 + alto + 18}" font-size="11" text-anchor="middle" fill="${C.texto2}">${+d}/${+m}</text>`;
+  });
+  cuerpo += `<text x="${x0}" y="${y0 + alto + 40}" font-size="11" fill="${C.tenue}">Semana de llegada (lunes). La primera barra (26/10) solo incluye a los usuarios del 1 de noviembre.</text>`;
+  cuerpo += `<rect x="28" y="76" width="12" height="12" rx="3" fill="${C.s1}"/><text x="46" y="87" font-size="12" fill="${C.texto}">semanas de noviembre</text><rect x="200" y="76" width="12" height="12" rx="3" fill="${C.s2}"/><text x="218" y="87" font-size="12" fill="${C.texto}">semanas de diciembre (compras navideñas)</text>`;
+  fs.writeFileSync('graficos/retencion-cohortes.svg', svg(760, y0 + alto + 56, 'Usuarios nuevos que vuelven en 30 días: noviembre retiene hasta el doble',
+    '% de cada cohorte semanal que volvió a la tienda entre los días 1 y 30 después de su primera visita', cuerpo));
+}
+
 console.log('Gráficos generados en graficos/ y resumen en resultados/02b_canales_agrupados.csv');

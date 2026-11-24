@@ -13,7 +13,7 @@ WITH actividad AS (
   SELECT DISTINCT
     user_pseudo_id,
     PARSE_DATE('%Y%m%d', event_date)                          AS dia,
-    DATE(TIMESTAMP_MICROS(user_first_touch_timestamp))        AS primer_dia
+    DATE(TIMESTAMP_MICROS(user_first_touch_timestamp))        AS primer_toque  -- fecha de la primera visita a la tienda
   FROM
     `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_*`
   WHERE
@@ -24,10 +24,10 @@ WITH actividad AS (
 usuarios AS (
   SELECT
     user_pseudo_id,
-    MIN(primer_dia)                                           AS primer_dia
+    MIN(primer_toque)                                         AS primer_dia
   FROM actividad
   GROUP BY user_pseudo_id
-  HAVING MIN(primer_dia) BETWEEN '2020-11-01' AND '2020-12-31'
+  HAVING MIN(primer_toque) BETWEEN '2020-11-01' AND '2020-12-31'
 ),
 
 dias_desde_inicio AS (

@@ -26,21 +26,25 @@
 
 ## Mis hallazgos
 ### Dispositivos
-1.
+1. El celular trae el 39,8 % de las sesiones y convierte 1,64 %, algo más que la computadora (1,54 %).
+2. La tablet solo pesa 2,2 % y convierte 1,39 %: no justifica un esfuerzo aparte.
 
 ### Embudo secuencial
-1.
+1. De 61 252 personas que vieron un producto, solo el 19,7 % lo añadió al carrito: la mayor fuga.
+2. Del carrito al pago pasa el 40,7 %; desde los datos de envío, 8 de cada 10 completan cada paso.
+3. Corrige el avance 1: la pérdida entre envío y pago es 20 %, no 41 %.
 
 ### Retención
-1.
+1. En promedio vuelve el 10,7 % en 30 días (la mayoría en la primera semana: 8,3 %).
+2. Noviembre retiene más (12,9 %) que diciembre (8,3 %); la peor cohorte es la del 28 de diciembre (6,7 %).
 
-### Dudas para revisar
--
+### Dudas / correcciones
+- La consulta 05 daba "Aggregations of aggregations are not allowed": el alias `primer_dia` del `MIN()` tenía el mismo nombre que la columna. Se renombró la columna a `primer_toque`.
 
 ## ✅ Listo cuando
-- [ ] Ejecutaste las 3 consultas sin errores
-- [ ] Guardaste los 3 CSV en `resultados/`
-- [ ] Escribiste al menos 2 hallazgos por consulta, con cifras
-- [ ] Anotaste tus dudas
+- [x] Ejecutaste las 3 consultas sin errores
+- [x] Guardaste los 3 CSV en `resultados/`
+- [x] Escribiste al menos 2 hallazgos por consulta, con cifras
+- [x] Anotaste tus dudas
 
 Con eso armamos los gráficos y el **avance 2 del informe**, y lo publicamos en GitHub.

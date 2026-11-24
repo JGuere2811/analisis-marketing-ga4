@@ -1,6 +1,6 @@
 # ¿Qué canales traen clientes que sí compran? · Análisis de GA4 en BigQuery
 
-> 📄 **[Leer el informe completo →](informe.md)** · Avance 1 de 3 publicado (exploración). Semanas 2 y 3 en curso.
+> 📄 **[Leer el informe completo →](informe.md)** · Avance 2 de 3 publicado (embudo secuencial, dispositivos y retención). Semana 3 (dashboard) en curso.
 
 ## La pregunta de negocio
 Una tienda en línea invierte tiempo y dinero en varios canales (búsqueda orgánica, anuncios, referencias, correo…). La pregunta es simple:
@@ -45,16 +45,17 @@ dashboard/                  ← (semana 3) dashboard y capturas
 | Semana | Entregable |
 |---|---|
 | 1 ✅ | Exploración: eventos y canales → [informe, avance 1](informe.md) |
-| 2 | Dispositivos, embudo de compra (vista → carrito → pago → compra) y cohortes de retención |
+| 2 ✅ | Dispositivos, embudo secuencial y cohortes de retención → [informe, avance 2](informe.md#5-hallazgo-3--el-celular-ya-no-es-un-canal-secundario-avance-2) |
 | 3 | Dashboard (resumen, embudo, canales), informe de una página y conclusiones |
 
-## Hallazgos principales (avance 1)
-![Embudo de compra](graficos/embudo.svg)
+## Hallazgos principales
+![Embudo paso a paso](graficos/embudo-secuencial.svg)
 
-- **Solo el 1,6 % de los visitantes compra**, y la mayor fuga está **antes del carrito**: el 77 % no abre ningún producto.
-- **En el pago, el 41 % abandona** entre los datos de envío y los de pago.
-- **Google orgánico** trae el 31 % de las visitas, pero convierte por debajo del promedio (1,29 % frente a 1,58 %).
-- **Los anuncios de Google** tienen la conversión (1,06 %) y el ticket (USD 54,6) más bajos.
+- **Solo el 1,6 % de los visitantes compra**, y la mayor fuga está **antes del carrito**: el 80 % de quienes ven un producto no lo añade.
+- **6 de cada 10 personas con productos en el carrito nunca empiezan a pagar**; una vez en el pago, 8 de cada 10 terminan cada paso. *(El avance 2 corrige la cifra del 41 % del avance 1.)*
+- **El celular trae el 40 % de las visitas y convierte igual o mejor que la computadora** (1,64 % frente a 1,54 %).
+- **Solo el 10,7 % de los usuarios nuevos vuelve en 30 días**; los de diciembre, compradores de regalos, apenas el 8 %.
+- **Google orgánico** trae el 31 % de las visitas, pero convierte por debajo del promedio, y **los anuncios de Google** tienen la conversión (1,06 %) y el ticket (USD 54,6) más bajos.
 - **El 8 % de las sesiones son autorreferencias**: un error de medición que le quita el crédito a los canales reales.
 
 👉 Detalle, gráficos, tablas y limitaciones en el **[informe](informe.md)**.
