@@ -1,7 +1,7 @@
 # Informe · ¿Dónde pierde clientes una tienda en línea?
 **Estudio del comportamiento de compra de la Google Merchandise Store (GA4, nov. 2020 – ene. 2021)**
 
-*Autor: Jose Manuel Güere Casas · Estado: **avance 2 de 3** (embudo secuencial, dispositivos y retención) · Última actualización: noviembre de 2026*
+*Autor: Jose Manuel Güere Casas · Estado: **versión final** (avances 1–3: canales, embudo, dispositivos, retención y dashboard) · Última actualización: noviembre de 2026*
 
 ---
 
@@ -161,5 +161,11 @@ Una **cohorte** es el grupo de usuarios que visitó la tienda por primera vez en
 6. **Retención medida por actividad, no por compra.** "Volver" significa tener cualquier actividad en la tienda, no necesariamente comprar de nuevo.
 7. **Sin gasto publicitario.** No se calcula el costo por venta ni el retorno de los anuncios.
 
-## 9. Próximos pasos
-- **Avance 3:** dashboard interactivo (resumen, embudo, canales, dispositivos y retención) e informe de una página con las recomendaciones priorizadas.
+## 9. Entregables finales *(avance 3)*
+- **[Dashboard interactivo](https://jguere2811.github.io/proyectos/dashboard-ga4.html):** indicadores, embudo, canales (con selector de métrica), dispositivos y mapa de calor de retención. Funciona en celular y en modo oscuro.
+- **[Informe ejecutivo de una página (PDF)](informe-ejecutivo.pdf):** hallazgos y recomendaciones priorizadas para presentar a un gerente.
+
+## 10. Qué haría después
+- Sumar el **gasto publicitario por canal** para medir el costo por venta y el retorno de Google Ads.
+- Hacer una **prueba A/B en la página de producto** (fotos y costo de envío visibles) y medir el cambio en "añadir al carrito".
+- Automatizar la actualización del dashboard con una **consulta programada** en BigQuery.

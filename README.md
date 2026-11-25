@@ -1,6 +1,8 @@
 # ¿Qué canales traen clientes que sí compran? · Análisis de GA4 en BigQuery
 
-> 📄 **[Leer el informe completo →](informe.md)** · Avance 2 de 3 publicado (embudo secuencial, dispositivos y retención). Semana 3 (dashboard) en curso.
+> 📊 **[Dashboard interactivo →](https://jguere2811.github.io/proyectos/dashboard-ga4.html)** · 📄 **[Informe ejecutivo de 1 página (PDF) →](informe-ejecutivo.pdf)** · 📘 **[Informe completo →](informe.md)**
+>
+> ✅ Proyecto completo: canales, embudo secuencial, dispositivos, retención por cohortes y dashboard.
 
 ## La pregunta de negocio
 Una tienda en línea invierte tiempo y dinero en varios canales (búsqueda orgánica, anuncios, referencias, correo…). La pregunta es simple:
@@ -38,7 +40,8 @@ scripts/graficos.mjs        ← genera los gráficos desde los CSV (node scripts
 notas/
   semana-1.md               ← guía de trabajo y preguntas de la semana
   semana-2.md               ← guía de la semana 2 (dispositivos, embudo, retención)
-dashboard/                  ← (semana 3) dashboard y capturas
+informe-ejecutivo.html/.pdf ← informe de una página (el PDF se genera desde el HTML)
+notas/semana-3.md           ← guía para replicar el dashboard en Power BI
 ```
 
 ## Plan
@@ -46,7 +49,7 @@ dashboard/                  ← (semana 3) dashboard y capturas
 |---|---|
 | 1 ✅ | Exploración: eventos y canales → [informe, avance 1](informe.md) |
 | 2 ✅ | Dispositivos, embudo secuencial y cohortes de retención → [informe, avance 2](informe.md#5-hallazgo-3--el-celular-ya-no-es-un-canal-secundario-avance-2) |
-| 3 | Dashboard (resumen, embudo, canales), informe de una página y conclusiones |
+| 3 ✅ | [Dashboard interactivo](https://jguere2811.github.io/proyectos/dashboard-ga4.html) e [informe ejecutivo de una página](informe-ejecutivo.pdf) |
 
 ## Hallazgos principales
 ![Embudo paso a paso](graficos/embudo-secuencial.svg)
@@ -61,7 +64,7 @@ dashboard/                  ← (semana 3) dashboard y capturas
 👉 Detalle, gráficos, tablas y limitaciones en el **[informe](informe.md)**.
 
 ## Herramientas
-SQL (BigQuery) · Google Analytics 4 · Power BI / Looker Studio
+SQL (BigQuery) · Google Analytics 4 · HTML/SVG/JavaScript (dashboard) · Power BI
 
 ---
 Autor: **Jose Manuel Güere Casas** · [Portafolio](https://jguere2811.github.io)

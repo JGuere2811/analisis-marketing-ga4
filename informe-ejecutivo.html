@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Informe ejecutivo · Análisis de GA4 · Jose Manuel Güere</title>
+<style>
+@page{size:A4;margin:11mm 12mm}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Segoe UI",Calibri,Arial,sans-serif;font-size:9.4pt;line-height:1.38;color:#1f2937}
+header{border-bottom:2.5px solid #2a78d6;padding-bottom:6px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:flex-end;gap:10px}
+.eyebrow{font-size:7.8pt;letter-spacing:.08em;text-transform:uppercase;color:#6b7280;font-weight:600}
+h1{font-size:16.5pt;line-height:1.15;color:#0b0b0b;margin-top:2px}
+.autor{text-align:right;font-size:8pt;color:#52514e;white-space:nowrap}
+.autor b{color:#0b0b0b;font-size:9pt}
+h2{font-size:10pt;text-transform:uppercase;letter-spacing:.06em;color:#2a78d6;margin:9px 0 4px}
+.resumen{background:#f3f7fd;border-left:3px solid #2a78d6;padding:7px 10px;font-size:9.6pt}
+.kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin:8px 0 2px}
+.kpi{border:1px solid #e1e0d9;border-radius:6px;padding:5px 8px}
+.kpi small{display:block;font-size:7.6pt;color:#52514e}
+.kpi b{display:block;font-size:13pt;color:#0b0b0b;line-height:1.2}
+.dos{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+figure img{width:100%;border:1px solid #e1e0d9;border-radius:6px}
+figcaption{font-size:7.6pt;color:#6b7280;margin-top:2px}
+ol{padding-left:16px}
+ol li{margin-bottom:3px}
+li b{color:#0b0b0b}
+.lim{font-size:8.2pt;color:#52514e}
+footer{margin-top:8px;border-top:1px solid #e1e0d9;padding-top:5px;font-size:7.8pt;color:#6b7280;display:flex;justify-content:space-between}
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <div class="eyebrow">Informe ejecutivo · Google Analytics 4 · nov 2020 – ene 2021</div>
+    <h1>¿Qué canales traen clientes que sí compran?</h1>
+  </div>
+  <div class="autor"><b>Jose Manuel Güere Casas</b><br>Analista de Datos &amp; BI<br>jguere2811.github.io</div>
+</header>
+
+<div class="resumen"><b>En una línea:</b> la tienda pierde a sus clientes <b>antes del carrito, no en el pago</b>: 8 de cada 10 personas que ven un producto no lo añaden. Los anuncios de Google son el canal que peor convierte, y los compradores de diciembre casi no vuelven.</div>
+
+<div class="kpis">
+  <div class="kpi"><small>Sesiones</small><b>360 129</b></div>
+  <div class="kpi"><small>Compras</small><b>5 692</b></div>
+  <div class="kpi"><small>Conversión</small><b>1,58 %</b></div>
+  <div class="kpi"><small>Ingresos</small><b>USD 362 mil</b></div>
+  <div class="kpi"><small>Vuelven en 30 días</small><b>10,7 %</b></div>
+</div>
+
+<div class="dos">
+  <figure><img src="graficos/embudo-secuencial.svg" alt="Embudo paso a paso"><figcaption>Embudo por usuario: cada paso cuenta solo a quien completó el anterior.</figcaption></figure>
+  <figure><img src="graficos/canales-conversion.svg" alt="Conversión por canal"><figcaption>Conversión por canal; la línea punteada es el promedio de la tienda.</figcaption></figure>
+</div>
+
+<div class="dos">
+  <div>
+    <h2>Hallazgos</h2>
+    <ol>
+      <li><b>La mayor fuga está en la página de producto:</b> solo el 19,7 % añade al carrito. Ya en el pago, 8 de cada 10 completan cada paso.</li>
+      <li><b>Google Ads convierte 1,06 %</b>, un tercio menos que el promedio, y tiene el ticket más bajo (USD 54,6).</li>
+      <li><b>El celular trae el 40 % de las visitas</b> y convierte igual o mejor que la computadora (1,64 % frente a 1,54 %).</li>
+      <li><b>Solo el 10,7 % de los usuarios nuevos vuelve en 30 días;</b> los de diciembre, compradores de regalos, apenas el 8 %.</li>
+      <li><b>El 8 % de las sesiones son autorreferencias:</b> un error de medición que le quita el crédito a los canales reales.</li>
+    </ol>
+  </div>
+  <div>
+    <h2>Recomendaciones</h2>
+    <ol>
+      <li><b>Mejorar la página de producto</b> (fotos, precio y costo de envío visibles) antes de tocar el proceso de pago.</li>
+      <li><b>Revisar las campañas de Google Ads</b> (palabras clave y páginas de destino) antes de subir el presupuesto.</li>
+      <li><b>Diseñar pensando primero en el celular</b>, ya que es casi la mitad del tráfico.</li>
+      <li><b>Campaña de correo en enero</b> para los compradores de diciembre, la cohorte que menos vuelve.</li>
+      <li><b>Corregir la configuración de GA4</b> (exclusión de referencias propias) para medir bien cada canal.</li>
+    </ol>
+  </div>
+</div>
+
+<div class="dos" style="margin-top:8px">
+  <figure><img src="graficos/dispositivos.svg" alt="Sesiones y conversión por dispositivo"><figcaption>Participación en las sesiones y conversión por dispositivo.</figcaption></figure>
+  <figure><img src="graficos/retencion-cohortes.svg" alt="Retención a 30 días por cohorte semanal"><figcaption>% de usuarios nuevos de cada semana que vuelve en 30 días.</figcaption></figure>
+</div>
+
+<h2>Método y limitaciones</h2>
+<p class="lim">Consultas SQL en BigQuery sobre el dataset público <i>ga4_obfuscated_sample_ecommerce</i> (Google Merchandise Store): embudo secuencial por usuario, comparación de canales y dispositivos, y cohortes semanales de retención. Los datos están ofuscados por Google; el canal es el de <b>adquisición del usuario</b> (primera visita), y el dataset no incluye el gasto publicitario, por lo que no se calcula el retorno de la inversión.</p>
+
+<footer>
+  <span>Código, consultas y resultados: github.com/JGuere2811/analisis-marketing-ga4</span>
+  <span>Dashboard interactivo: jguere2811.github.io/proyectos/dashboard-ga4.html</span>
+</footer>
+</body>
+</html>
